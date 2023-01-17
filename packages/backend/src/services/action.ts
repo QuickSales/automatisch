@@ -5,6 +5,7 @@ import ExecutionStep from '../models/execution-step';
 import computeParameters from '../helpers/compute-parameters';
 import globalVariable from '../helpers/global-variable';
 import HttpError from '../errors/http';
+import EarlyExitError from '../errors/early-exit';
 
 type ProcessActionOptions = {
   flowId: string;
@@ -44,13 +45,15 @@ export const processAction = async (options: ProcessActionOptions) => {
   try {
     await actionCommand.run($);
   } catch (error) {
-    if (error instanceof HttpError) {
-      $.actionOutput.error = error.details;
-    } else {
-      try {
-        $.actionOutput.error = JSON.parse(error.message);
-      } catch {
-        $.actionOutput.error = { error: error.message };
+    if (error instanceof EarlyExitError === false) {
+      if (error instanceof HttpError) {
+        $.actionOutput.error = error.details;
+      } else {
+        try {
+          $.actionOutput.error = JSON.parse(error.message);
+        } catch {
+          $.actionOutput.error = { error: error.message };
+        }
       }
     }
   }

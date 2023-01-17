@@ -77,6 +77,9 @@ const globalVariable = async (
     execution: {
       id: execution?.id,
       testRun,
+      exit: () => {
+        throw new EarlyExitError();
+      }
     },
     lastExecutionStep: (await step?.getLastExecutionStep())?.toJSON(),
     triggerOutput: {

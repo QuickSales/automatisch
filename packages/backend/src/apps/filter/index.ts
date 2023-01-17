@@ -1,4 +1,5 @@
 import defineApp from '../../helpers/define-app';
+import actions from './actions';
 
 export default defineApp({
   name: 'Filter',
@@ -9,4 +10,5 @@ export default defineApp({
   baseUrl: '',
   apiBaseUrl: '',
   primaryColor: '001F52',
+  actions,
 });
