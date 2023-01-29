@@ -35,7 +35,8 @@ export default defineTrigger({
       name: $.flow.id,
       type: 'POST',
       url: $.webhookUrl,
-      filters: [$.step.parameters.filters]
+      // filters: [$.step.parameters.filters]
+      filters: webhookFilters.map((filter) => filter.value),
     };
 
     const { data } = await $.http.post(
