@@ -9,6 +9,7 @@ import getExecution from './queries/get-execution';
 import getExecutions from './queries/get-executions';
 import getExecutionSteps from './queries/get-execution-steps';
 import getDynamicData from './queries/get-dynamic-data';
+import getDynamicFields from './queries/get-dynamic-fields';
 import getCurrentUser from './queries/get-current-user';
 import healthcheck from './queries/healthcheck';
 
@@ -24,6 +25,7 @@ const queryResolvers = {
   getExecutions,
   getExecutionSteps,
   getDynamicData,
+  getDynamicFields,
   getCurrentUser,
   healthcheck,
 };
